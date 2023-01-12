@@ -34,3 +34,38 @@ function usernameVerify(error = {}, values){
 
     return error
 }
+
+/**validate reset password */
+
+export async function resetPasswordValidation(values){
+    const errors = passwordVerify({}, values);
+    if(values.password !== values.confirm_password){
+        errors.exist= toast.error("Password not match..!")
+    }
+    return errors;
+}
+/**validate register */
+export async function registerValidation(values){
+    const errors = usernameVerify({}, values);
+    passwordVerify(errors, values);
+    emailVerify(errors, values);
+    
+    return errors
+
+}
+/**validate email */
+function emailVerify(error={}, values){
+    if(!values.email){
+        error.email = toast.error("Email Required...!");
+    }else if(values.email.includes(" ")){
+        error.email = toast.error("Invalid Email...!")
+    }
+
+    return error;
+}
+/** validate profile page */
+export async function profileValidation(values){
+    const errors = emailVerify({}, values);
+
+    return errors;
+}
