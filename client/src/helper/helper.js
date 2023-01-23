@@ -103,7 +103,7 @@ export async function verifyOTP({username, code}){
     } catch (error) {
         return Promise.reject({error});
     }
-}
+}      
 
 /**reset password */
 export async function resetPassword({username, password}){
