@@ -8,7 +8,6 @@ const app = express()
 /**middlewares */
 app.use(express.json());
 app.use(cors());
-app.use(morgan(''));
 app.disable('x-powered-by'); //less hackers know about our stack
 
 const port = 5000
