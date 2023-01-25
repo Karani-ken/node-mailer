@@ -6,20 +6,32 @@ import { useFormik } from 'formik';
 import convertToBase64 from '../../helper/convert'
 import styles from '../../styles/Username.module.css';
 import { registerValidation } from '../../helper/validate';
+import {registerUser} from '../../helper/helper'
 const Registar = () => {
+
+  const navigate = useNavigate();
   const [file, setFile] = useState()
    const formik = useFormik({
       initialValues:{
         email:"example@gmail.com",
         username:"example123",
-        password:""
+        password:"admin@123"
       },
       validate : registerValidation,
       validateOnBlur: false,
       validateOnChange: false,
       onSubmit: async values => {
         values = await Object.assign(values, {profile: file || ''})
-        console.log(values)
+       let registerPromise = registerUser(values);
+       toast.promise(registerPromise, {
+        loading:'Creating Profile...',
+        success: <b> Registered Successfully...!</b>,
+        error: <b>Could not Register</b>
+       });
+
+       registerPromise.then(function(){ navigate('/')});
+
+
       }
    })
    /** formik doesn't support file upload so we need a hanlder to support this */
