@@ -3,7 +3,7 @@ import cors from 'cors'
 import morgan from "morgan";
 import connect from "./database/conn.js"; 
 import router from "./routes/route.js";
-const app = express()
+const app = express()     
 
 /**middlewares */
 app.use(express.json());
