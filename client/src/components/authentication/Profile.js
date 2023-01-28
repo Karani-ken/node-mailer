@@ -13,8 +13,7 @@ import { updateUser } from '../../helper/helper';
 const Profile = () => {
 
   const [file, setFile] = useState()
-  const {username} = useAuthStore(state=> state.auth);
-  const [{ isLoading, apiData, serverError }] = useFetch(`/user/${username}`)
+  const [{ isLoading, apiData, serverError }] = useFetch()
   const formik = useFormik({
     initialValues: {
      firstName : apiData?.firstName || '',

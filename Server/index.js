@@ -11,8 +11,8 @@ app.use(cors());
 app.use(morgan()); 
 app.disable('x-powered-by'); //less hackers know about our stack
 
-const port = 5000                   
-
+const port = 5000                           
+        
 /**HTTP GET Request */
 app.get('/', (req,res)=>{
     res.status(201).json('HOME GET Request')
